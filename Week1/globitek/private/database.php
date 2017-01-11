@@ -47,7 +47,7 @@
   }
 
   function db_close($connection) {
-    return mysql_close($connection);
+    return mysqli_close($connection);
   }
 
   function db_escape($connection, $string) {

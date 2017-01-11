@@ -53,7 +53,7 @@
        if($result) {
          db_close($db);
 
-      //   TODO redirect user to success page
+        //   TODO redirect user to success page
         header("Location: registration_success.php");
         exit;
        }
