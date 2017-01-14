@@ -7,6 +7,7 @@ $territory = array(
   'state_id' => '',
   'position' => ''
 );
+
 if(is_post_request()) {
 
   // Confirm that values are present before accessing them.
@@ -33,12 +34,12 @@ if(is_post_request()) {
   <h1>New Territory</h1>
   <?php echo display_errors($errors); ?>
   <!-- TODO add form -->
-  <form action="new.php" method="post">
+  <form action="new.php?id=<?php echo h($_GET['id']); ?>" method="post">
     Name:<br />
     <input type="text" name="name" value="<?php echo h($territory['name']); ?>" /><br />
     Position:<br />
     <input type="text" name="position" value="<?php echo h($territory['position']); ?>" /><br />
-	<input type="hidden" name="state_id" value="<?php echo h($territory['state_id']); ?>"/><br />
+	<input type="hidden" name="state_id" value="<?php echo h($_GET['id']); ?>"/><br />
     <br />
     <input type="submit" name="submit" value="Create"  />
   </form>

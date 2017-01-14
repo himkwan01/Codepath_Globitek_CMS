@@ -17,7 +17,7 @@ if(is_post_request()) {
   if(isset($_POST['state_id'])) { $territory['state_id'] = $_POST['state_id']; }
   if(isset($_POST['position'])) { $territory['position'] = $_POST['position']; }
 
-  $result = insert_territory($territory);
+  $result = update_territory($territory);
   if($result === true) {
     $new_id = db_insert_id($db);
     redirect_to('show.php?id=' . u($territory['id']));
@@ -36,7 +36,7 @@ if(is_post_request()) {
   <h1>Edit Territory: <?php echo h($territory['name']); ?></h1>
   <?php echo display_errors($errors); ?>
   <!-- TODO add form -->
-  <form action="show.php?id=<?php echo h($territory['id']) ?>" method="post">
+  <form action="edit.php?id=<?php echo h($territory['id']) ?>" method="post">
     Name:<br />
     <input type="text" name="name" value="<?php echo h($territory['name']); ?>" /><br />
     

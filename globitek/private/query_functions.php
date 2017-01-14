@@ -190,7 +190,10 @@
       return $errors;
     }
 
-    $sql = ""; // TODO add SQL
+    $sql = "INSERT INTO territories(name,state_id,position) ";
+	$sql .= "VALUES (";
+	$sql .= "'" . $territory['name'] ."'," . "'" . $territory['state_id'] . "', ";
+    $sql .= "'"	. $territory['position']. "')";
     // For INSERT statments, $result is just true/false
     $result = db_query($db, $sql);
     if($result) {
@@ -419,9 +422,12 @@
 
     if (is_blank($user['username'])) {
       $errors[] = "Username cannot be blank.";
-    } elseif (!has_length($user['username'], array('max' => 255))) {
-      $errors[] = "Username must be less than 255 characters.";
+    } elseif (!has_length($user['username'], array('min' => 8, 'max' => 255))) {
+      $errors[] = "Username must be between 8 and 255 characters.";
+    } elseif (!has_valid_username_format($user['username'])) {
+      $errors[] = "Username must be a valid format.";
     }
+	
     return $errors;
   }
 
