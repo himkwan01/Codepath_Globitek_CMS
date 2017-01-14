@@ -84,13 +84,13 @@
   <!-- TODO: HTML form goes here -->
   <form form action="register.php" method="post">
     First Name:<br>
-    <input type="text" name="first_name" value=<?php echo $first_name; ?>><br>
+    <input type="text" name="first_name" value=<?php echo h($first_name); ?>><br>
     Last Name:<br>
-    <input type="text" name="last_name" value=<?php echo $last_name; ?>><br>
+    <input type="text" name="last_name" value=<?php echo h($last_name); ?>><br>
     Email:<br>
-    <input type="text" name="email" value=<?php echo $email; ?>><br>
+    <input type="text" name="email" value=<?php echo h($email); ?>><br>
     Username:<br>
-    <input type="text" name="username" value=<?php echo $username; ?>><br>
+    <input type="text" name="username" value=<?php echo h($username); ?>><br>
     <input type="submit" value="Submit">
   </form>
 </div>

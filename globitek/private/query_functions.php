@@ -46,6 +46,24 @@
 
   function validate_state($state, $errors=array()) {
     // TODO add validations
+    if (is_blank($state['name'])) {
+      $errors[] = "Name cannot be blank.";
+    }
+    elseif (!has_length($state['name'], array('min' => 2, 'max' => 255))) {
+      $errors[] = "Name must be between 2 and 255 characters.";
+    }
+    if (is_blank($state['code'])) {
+      $errors[] = "Code cannot be blank.";
+    }
+    elseif (!has_valid_code_format($state['code'])){
+		$errors[] = "Code must be 2 uppercase characters.";
+	}
+    if (is_blank($state['country_id'])){
+      $errors[] = "Country id cannot be blank.";
+    }
+    else if(!has_valid_id_format($state['country_id'])){
+      $errors[] = "Country id must be an integer.";
+    }
 
     return $errors;
   }
@@ -60,7 +78,10 @@
       return $errors;
     }
 
-    $sql = ""; // TODO add SQL
+    $sql = "INSERT INTO states(name,code,country_id) ";
+    $sql .= "VALUES (";
+    $sql .= "'" . $state['name'] ."'," . "'" . $state['code'] . "', ";
+    $sql .= "'"	. $state['country_id']. "')";
     // For INSERT statments, $result is just true/false
     $result = db_query($db, $sql);
     if($result) {
@@ -84,7 +105,12 @@
       return $errors;
     }
 
-    $sql = ""; // TODO add SQL
+    $sql = "UPDATE states SET "; // TODO add SQL
+    $sql .= "name='" . $state['name'] . "', ";
+    $sql .= "code='" . $state['code'] . "', ";
+    $sql .= "country_id='" . $state['country_id'] . "' ";
+    $sql .= "WHERE id='" . $state['id'] . "' ";
+    $sql .= "LIMIT 1;";
     // For update_state statments, $result is just true/false
     $result = db_query($db, $sql);
     if($result) {
@@ -132,6 +158,24 @@
 
   function validate_territory($territory, $errors=array()) {
     // TODO add validations
+	if (is_blank($territory['name'])) {
+      $errors[] = "Name cannot be blank.";
+    }
+    elseif (!has_length($territory['name'], array('min' => 2, 'max' => 255))) {
+      $errors[] = "Name must be between 2 and 255 characters.";
+    }
+    if (is_blank($territory['state_id'])) {
+      $errors[] = "State id cannot be blank.";
+    }
+    elseif (!has_valid_id_format($territory['state_id'])){
+		$errors[] = "State id must be 2 uppercase characters.";
+	}
+    if (is_blank($territory['position'])){
+      $errors[] = "Position cannot be blank.";
+    }
+    else if(!has_valid_id_format($territory['position'])){
+      $errors[] = "Position must be an integer.";
+    }
 
     return $errors;
   }
@@ -170,7 +214,11 @@
       return $errors;
     }
 
-    $sql = ""; // TODO add SQL
+    $sql = "UPDATE territories SET "; // TODO add SQL
+    $sql .= "name='" . $territory['name'] . "', ";
+    $sql .= "position='" . $territory['position'] . "' ";
+    $sql .= "WHERE id='" . $territory['id'] . "' ";
+    $sql .= "LIMIT 1;";
     // For update_territory statments, $result is just true/false
     $result = db_query($db, $sql);
     if($result) {
