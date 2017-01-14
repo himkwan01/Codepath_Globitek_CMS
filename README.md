@@ -18,7 +18,6 @@ The following **required** functionality is completed:
 The following advanced user stories are optional:
 
 * [x]  Bonus: Validate that form values contain only whitelisted characters
-
 * [ ]  Bonus: Validate the uniqueness of the username
 
 Week 2
@@ -40,6 +39,11 @@ The following **required** functionality is completed:
    - [x] Validate that State codes contian only 2 uppercase characters
    - [x] Validate that first names and last names contiain only the whitelisted characters: A-Z, a-z, ', -, ,, ., and space.
 8. [x] Sanitize all dynamic output for HTML
+9. [x] Penetration Testing
+   - [x] Verify that all form text inputs are not vulnerable to SQLI attacks.
+   - [x] Verify that all URL query strings are not vulnerable to SQLI attacks. 
+   - [x] Verify that all form text inputs are not vulnerable to XSS attacks.
+   - [x] Verify that all URL query strings are not vulnerable to XSS attacks.
 
 The following advanced user stories are optional:
 
