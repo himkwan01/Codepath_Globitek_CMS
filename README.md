@@ -38,6 +38,8 @@ The following **required** functionality is completed:
    - [x] Validate that email addresses contian at least one char before @ , one char between @ and . , and one char after .
    - [x] Validate that State codes contian only 2 uppercase characters
    - [x] Validate that first names and last names contiain only the whitelisted characters: A-Z, a-z, ', -, ,, ., and space.
+   - [x] Validate that country id contain only numbers and the first number will not be zero.
+   - [x] Validate that state names contian onyl uppercase character at the beginning.
 8. [x] Sanitize all dynamic output for HTML
 9. [x] Penetration Testing
    - [x] Verify that all form text inputs are not vulnerable to SQLI attacks.
