@@ -222,6 +222,33 @@
 
   function validate_salesperson($salesperson, $errors=array()) {
     // TODO add validations
+    if (is_blank($salesperson['first_name'])) {
+      $errors[] = "First name cannot be blank.";
+    }
+    elseif (!has_length($salesperson
+          ['first_name'], array('min' => 2, 'max' => 255))) {
+      $errors[] = "First name must be between 2 and 255 characters.";
+    }
+
+    if (is_blank($salesperson['last_name'])) {
+      $errors[] = "Last name cannot be blank.";
+    }
+    elseif (!has_length($salesperson
+          ['last_name'], array('min' => 2, 'max' => 255))) {
+      $errors[] = "Last name must be between 2 and 255 characters.";
+    }
+    if (is_blank($salesperson['phone'])){
+      $errors[] = "Phone cannot be blank.";
+    }
+    else if(!has_valid_phone_format($salesperson['phone'])){
+      $errors[] = "Phone must be a valid format.";
+    }
+    if (is_blank($salesperson['email'])) {
+      $errors[] = "Email cannot be blank.";
+    }
+    elseif (!has_valid_email_format($salesperson['email'])) {
+      $errors[] = "Email must be a valid format.";
+    }
 
     return $errors;
   }
@@ -236,7 +263,10 @@
       return $errors;
     }
 
-    $sql = ""; // TODO add SQL
+    $sql = "INSERT INTO salespeople(first_name,last_name,phone,email) ";
+    $sql .= "VALUES (";
+    $sql .= "'" . $salesperson['first_name'] ."'," . "'" . $salesperson['last_name'] . "', ";
+    $sql .= "'"	. $salesperson['phone']. "', '" . $salesperson['email'] . "')";
     // For INSERT statments, $result is just true/false
     $result = db_query($db, $sql);
     if($result) {
@@ -260,7 +290,14 @@
       return $errors;
     }
 
-    $sql = ""; // TODO add SQL
+    $sql = "UPDATE salespeople SET "; // TODO add SQL
+    $sql .= "first_name='" . $salesperson['first_name'] . "', ";
+    $sql .= "last_name='" . $salesperson['last_name'] . "', ";
+    $sql .= "phone='" . $salesperson['phone'] . "', ";
+    $sql .= "email='" . $salesperson['email'] . "' ";
+    $sql .= "WHERE id='" . $salesperson['id'] . "' ";
+    $sql .= "LIMIT 1;";
+
     // For update_salesperson statments, $result is just true/false
     $result = db_query($db, $sql);
     if($result) {
@@ -347,15 +384,10 @@
     }
 
     $created_at = date("Y-m-d H:i:s");
-    $sql = "INSERT INTO users ";
-    $sql .= "(first_name, last_name, email, username, created_at) ";
-    $sql .= "VALUES (";
-    $sql .= "'" . $user['first_name'] . "',";
-    $sql .= "'" . $user['last_name'] . "',";
-    $sql .= "'" . $user['email'] . "',";
-    $sql .= "'" . $user['username'] . "',";
-    $sql .= "'" . $created_at . "',";
-    $sql .= ");";
+    $sql = "INSERT INTO users(first_name,last_name,email,username,created_at) ";
+    $sql .= "VALUES(";
+	$sql .= "'" . $user['first_name'] ."'," . "'" . $user['last_name'] . "', '".$user['email']. "', ";
+	$sql .= "'" . $user['username'] . "','" . $created_at . "')";
     // For INSERT statments, $result is just true/false
     $result = db_query($db, $sql);
     if($result) {

@@ -24,11 +24,17 @@
 
   // has_valid_email_format('test@test.com')
   function has_valid_email_format($value) {
-	$pos = strpos($value,'@');
-    if($pos!==false){
-		return true;
-	}
-	return false;
+    return preg_match
+        ("/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9]+\.{1}+[A-Za-z+]+$/", $value);
+  }
+  
+  // has_valid_phone_format((999)-999-9999)
+  function has_valid_phone_format($value){
+    return preg_match("/^[0-9 ()-]+$/", $value);
   }
 
+  // has_valid_username_format (whiteleist char: A-Z a-z 0-9 _
+  function has_valid_username_format($value){
+    return preg_match("/^[A-Za-z0-9)]+$", $value);
+  }
 ?>
