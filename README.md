@@ -17,7 +17,7 @@ The following **required** functionality is completed:
 
 The following advanced user stories are optional:
 
-* [ ]  Bonus: Validate that form values contain only whitelisted characters
+* [x]  Bonus: Validate that form values contain only whitelisted characters
 
 * [ ]  Bonus: Validate the uniqueness of the username
 
