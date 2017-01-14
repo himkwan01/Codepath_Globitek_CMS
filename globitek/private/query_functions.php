@@ -39,7 +39,7 @@
   function find_state_by_id($id=0) {
     global $db;
     $sql = "SELECT * FROM states ";
-    $sql .= "WHERE id='" . $id . "';";
+    $sql .= "WHERE id='" . u($id) . "';";
     $state_result = db_query($db, $sql);
     return $state_result;
   }
@@ -263,7 +263,7 @@
   function find_salesperson_by_id($id=0) {
     global $db;
     $sql = "SELECT * FROM salespeople ";
-    $sql .= "WHERE id='" . $id . "';";
+    $sql .= "WHERE id='" . u($id) . "';";
     $salespeople_result = db_query($db, $sql);
     return $salespeople_result;
   }
@@ -389,7 +389,7 @@
   // Find user using id
   function find_user_by_id($id=0) {
     global $db;
-    $sql = "SELECT * FROM users WHERE id='" . $id . "' LIMIT 1;";
+    $sql = "SELECT * FROM users WHERE id='" . u($id) . "' LIMIT 1;";
     $users_result = db_query($db, $sql);
     return $users_result;
   }
