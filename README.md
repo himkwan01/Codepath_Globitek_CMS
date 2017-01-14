@@ -3,7 +3,7 @@
 Time spent: **3** hours spent in total
 
 ## User Stories
-
+Week 1
 The following **required** functionality is completed:
 
 1. [x]  Required: Create a Users Table
@@ -21,6 +21,30 @@ The following advanced user stories are optional:
 
 * [ ]  Bonus: Validate the uniqueness of the username
 
+Week 2
+The following **required** functionality is completed:
+
+1. [x]  Import the starting databse
+2. [x]  Set up the Starting Code
+3. [x]  taff CMS for Users
+4. [x]  Staff CMS for Salespeople
+5. [x]  Staff CMS for States
+6. [x]  Staff CMS for Territories
+7. [x]  Validations
+   - [x] Validate that no values are left blank
+   - [x] Validate that all string values are less than 255 characters long
+   - [x] Validate that usernames contain only the whitelisted characters: A-Z, a-z, 0-9, and _
+   - [x] Validate that phone numbers contain only the whitelisted characters: 0-9, spaces, and ()-
+   - [x] Validate that email addresses contain only whitelisted characters: A-Z, a-z, 0-9, and @._-
+   - [x] Validate that email addresses contian at least one char before @ , one char between @ and . , and one char after .
+   - [x] Validate that State codes contian only 2 uppercase characters
+8. [x] Sanitize all dynamic output for HTML
+
+The following advanced user stories are optional:
+
+* [ ]  Bonus: Validate that form values contain only whitelisted characters
+
+* [ ]  Bonus: Validate the uniqueness of the username
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
