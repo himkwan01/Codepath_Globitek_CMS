@@ -1,6 +1,6 @@
 # Project 1 - Globitek CMS
 
-Time spent: **3** hours spent in total
+Time spent: **3** hours spent in total for week 1, **10** hours spent in total for week 2
 
 ## User Stories
 Week 1
@@ -58,8 +58,12 @@ The following advanced user stories are optional:
 
 Here's a walkthrough of implemented user stories:
 
+Week 1
 <img src='http://i.imgur.com/ya4Cb7Z.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
+Week 2
+<img src='http://i.imgur.com/u1neDPm.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+http://i.imgur.com/u1neDPm.gif
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
