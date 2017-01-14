@@ -38,7 +38,11 @@
   function has_valid_username_format($value){
     return preg_match("/^[A-Za-z0-9)]+$", $value);
   }
-  
+  // My custom validation
+  // has_valid_name_format
+  function has_valid_name_format($value){
+	  return preg_match("/^[A-Za-z '-,.]+$/", $value);
+  }
   // My custom validation
   // has_valid_code_format (AZ) (only 2 uppercase char)
   function has_valid_code_format($value){

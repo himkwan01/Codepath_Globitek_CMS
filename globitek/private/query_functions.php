@@ -399,13 +399,17 @@
       $errors[] = "First name cannot be blank.";
     } elseif (!has_length($user['first_name'], array('min' => 2, 'max' => 255))) {
       $errors[] = "First name must be between 2 and 255 characters.";
-    }
+    } else if(!has_valid_name_format($user['first_name'])){
+		$errors[] = "First name must be a valid format.";
+	}
 
     if (is_blank($user['last_name'])) {
       $errors[] = "Last name cannot be blank.";
     } elseif (!has_length($user['last_name'], array('min' => 2, 'max' => 255))) {
       $errors[] = "Last name must be between 2 and 255 characters.";
-    }
+    } else if(!has_valid_name_format($user['last_name'])){
+		$errors[] = "Last name must be a valid format.";
+	}
 
     if (is_blank($user['email'])) {
       $errors[] = "Email cannot be blank.";
