@@ -129,9 +129,11 @@ The following advanced user stories are optional:
 Here's a walkthrough of implemented user stories:
 
 Week 1
+
 <img src='http://i.imgur.com/ya4Cb7Z.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 Week 2
+
 <img src='http://i.imgur.com/u1neDPm.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
