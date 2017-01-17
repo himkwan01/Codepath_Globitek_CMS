@@ -60,4 +60,10 @@
   function has_valid_state_format($value){
 	  return preg_match("/^[A-Z][A-Za-z ]+$", $value);
   }
+  
+  //My custom validation
+  // has_unique_username
+  function has_unique_username($value){
+	  return db_num_rows(find_user_by_username($value))===0;
+  }
 ?>

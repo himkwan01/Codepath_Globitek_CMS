@@ -396,7 +396,12 @@
     $users_result = db_query($db, $sql);
     return $users_result;
   }
-
+  function find_user_by_username($username){
+	  global $db;
+	  $sql = "SELECT * FROM users WHERE username='" . u($username) . "';";
+	  $result = db_query($db, $sql);
+	  return $result;
+  }
   function validate_user($user, $errors=array()) {
     if (is_blank($user['first_name'])) {
       $errors[] = "First name cannot be blank.";
@@ -426,7 +431,9 @@
       $errors[] = "Username must be between 8 and 255 characters.";
     } elseif (!has_valid_username_format($user['username'])) {
       $errors[] = "Username must be a valid format.";
-    }
+    } elseif(!has_unique_username($user['username'])){
+	  $errors[] = "Username has been taken.";
+	}
 	
     return $errors;
   }

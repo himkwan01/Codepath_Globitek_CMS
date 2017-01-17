@@ -18,7 +18,7 @@ The following **required** functionality is completed:
 The following advanced user stories are optional:
 
 * [x]  Bonus: Validate that form values contain only whitelisted characters
-* [ ]  Bonus: Validate the uniqueness of the username
+* [x]  Bonus: Validate the uniqueness of the username
 
 Week 2
 The following **required** functionality is completed:
@@ -40,6 +40,7 @@ The following **required** functionality is completed:
    - [x] Validate that first names and last names contiain only the whitelisted characters: A-Z, a-z, ', -, ,, ., and space.
    - [x] Validate that country id contain only numbers and the first number will not be zero.
    - [x] Validate that state names contian onyl uppercase character at the beginning.
+   - [x] Validate the uniqueness of the username
 8. [x] Sanitize all dynamic output for HTML
 9. [x] Penetration Testing
    - [x] Verify that all form text inputs are not vulnerable to SQLI attacks.
@@ -50,7 +51,7 @@ The following **required** functionality is completed:
 The following advanced user stories are optional:
 
 * [ ]  Bonus: On "public/staff/territories/show.php", instead of displaying an integer value for territories.state_id, display the name of the state.
-* [ ]  Bonus: Validate the uniqueness of users.username, both when a user is created and when a user is updated
+* [x]  Bonus: Validate the uniqueness of users.username, both when a user is created and when a user is updated
 * [ ]  Bonus: Add a page for "public/staff/users/delete.php". Add a link to it from the user details page. The delete page will display the text: "Are you sure you want to permanently delete the user: ". If the user confirms it, delete the user record and redirect back to the users list.
 * [ ]  Bonus: Add a Staff CMS for countries. (Creating a countries table was a bonus objective in last week's assignment.) Add pages for "list", "show", "new", and "edit", similar to the pages in the CMS area for states.
 * [ ]  Advanced: Nest the CMS for states inside of the Staff CMS for countries (created in the previous challenge). It should be nested in the same way in which territories are nested inside of states.
