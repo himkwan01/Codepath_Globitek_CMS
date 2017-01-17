@@ -56,48 +56,71 @@ The following advanced user stories are optional:
 Week 2
 The following **required** functionality is completed:
 
-1. [x]  Import the starting databse
+1. [x]  Required: Import the starting databse
+    * [x]  Required: Download the Assignment 2 Starting Database.
+    * [x]  Required: Use the command line to import globitek_week2.sql into the globitek database.
 
-2. [x]  Set up the Starting Code
+2. [x]  Required: Set up the Starting Code
+    * [x]  Required: Download the Assignment 2 Starting Code.
+    * [x]  Required: Unzip the files and move them to your web document root.
 
-3. [x]  taff CMS for Users
+3. [x]  Required: Staff CMS for Users
+    * [x]  Required: index.php
+    * [x]  Required: show.php
+    * [x]  Required: new.php
+    * [x]  Required: edit.php
 
-4. [x]  Staff CMS for Salespeople
+4. [x]  Required: Staff CMS for Salespeople
+    * [x]  Required: index.php
+    * [x]  Required: show.php
+    * [x]  Required: new.php
+    * [x]  Required: edit.php
 
-5. [x]  Staff CMS for States
+5. [x]  Required: Staff CMS for States
+    * [x]  Required: index.php
+    * [x]  Required: show.php
+    * [x]  Required: new.php
+    * [x]  Required: edit.php
 
-6. [x]  Staff CMS for Territories
+6. [x]  Required: Staff CMS for Territories
+    * [x]  Required: index.php
+    * [x]  Required: show.php
+    * [x]  Required: new.php
+    * [x]  Required: edit.php
 
-7. [x]  Validations
-   * [x]  Validate that no values are left blank
-   * [x]  Validate that all string values are less than 255 characters long
-   * [x]  Validate that usernames contain only the whitelisted characters: A-Z, a-z, 0-9, and _
-   * [x]  Validate that phone numbers contain only the whitelisted characters: 0-9, spaces, and ()-
-   * [x]  Validate that email addresses contain only whitelisted characters: A-Z, a-z, 0-9, and @._-
-   * [x]  Validate that email addresses contian at least one char before @ , one char between @ and . , and one char after .
-   * [x]  Validate that State codes contian only 2 uppercase characters
-   * [x]  Validate that first names and last names contiain only the whitelisted characters: A-Z, a-z, ', -, ,, ., and space.
-   * [x]  Validate that country id contain only numbers and the first number will not be zero.
-   * [x]  Validate that state names contian onyl uppercase character at the beginning.
+7. [x]  Required: Validations
+   * [x]  Required: Validate that no values are left blank.
+   * [x]  Required: Validate that all string values are less than 255 characters long.
+   * [x]  Required: Validate that usernames contain only the whitelisted characters: A-Z, a-z, 0-9, and _
+   * [x]  Required: Validate that phone numbers contain only the whitelisted characters: 0-9, spaces, and ()-
+   * [x]  Required: Validate that email addresses contain only whitelisted characters: A-Z, a-z, 0-9, and @._-
+   * [x]  Required: Add at least 5 other validations
+     - [x]  Validate that email addresses contian at least one char before @ , one char between @ and . , and one char after .
+     - [x]  Validate that State codes contian only 2 uppercase characters
+     - [x]  Validate that first names and last names contiain only the whitelisted characters: A-Z, a-z, ', -, ,, ., and space.
+     - [x]  Validate that country id contain only numbers and the first number will not be zero.
+     - [x]  Validate that state names contian onyl uppercase character at the beginning.
    
-8. [x]  Sanitize all dynamic output for HTML
+8. [x]  Required: Sanitize
+   * [x]  Required: All input and dynamic output should be sanitized.
+   * [x]  Required: Sanitize dynamic data
 
-9. [x] Penetration Testing
-   * [x]  Verify that all form text inputs are not vulnerable to SQLI attacks.
-   * [x]  Verify that all URL query strings are not vulnerable to SQLI attacks. 
-   * [x]  Verify that all form text inputs are not vulnerable to XSS attacks.
-   * [x]  Verify that all URL query strings are not vulnerable to XSS attacks.
+9. [x] Required: Penetration Testing
+   * [x]  Required: Verify that all form text inputs are not vulnerable to SQLI attacks.
+   * [x]  Required: Verify that all URL query strings are not vulnerable to SQLI attacks. 
+   * [x]  Required: Verify that all form text inputs are not vulnerable to XSS attacks.
+   * [x]  Required: Verify that all URL query strings are not vulnerable to XSS attacks.
 
 The following advanced user stories are optional:
 
-* [ ]  Bonus: On "public/staff/territories/show.php", instead of displaying an integer value for territories.state_id, display the name of the state.
+* [ ]  Bonus 1: On "public/staff/territories/show.php", instead of displaying an integer value for territories.state_id, display the name of the state.
 
-* [ ]  Bonus: Validate the uniqueness of users.username, both when a user is created and when a user is updated
+* [ ]  Bonus 2: Validate the uniqueness of users.username, both when a user is created and when a user is updated
 
 
-* [ ]  Bonus: Add a page for "public/staff/users/delete.php". Add a link to it from the user details page. The delete page will display the text: "Are you sure you want to permanently delete the user: ". If the user confirms it, delete the user record and redirect back to the users list.
+* [ ]  Bonus 3: Add a page for "public/staff/users/delete.php". Add a link to it from the user details page. The delete page will display the text: "Are you sure you want to permanently delete the user: ". If the user confirms it, delete the user record and redirect back to the users list.
 
-* [ ]  Bonus: Add a Staff CMS for countries. (Creating a countries table was a bonus objective in last week's assignment.) Add pages for "list", "show", "new", and "edit", similar to the pages in the CMS area for states.
+* [ ]  Bonus 4: Add a Staff CMS for countries. (Creating a countries table was a bonus objective in last week's assignment.) Add pages for "list", "show", "new", and "edit", similar to the pages in the CMS area for states.
 
 * [ ]  Advanced: Nest the CMS for states inside of the Staff CMS for countries (created in the previous challenge). It should be nested in the same way in which territories are nested inside of states.
 
