@@ -4,7 +4,7 @@
 <?php include(SHARED_PATH . '/header.php'); ?>
 
 <div id="main-content">
-  <h1>Territories</h1>
+  <h1>Territoriess</h1>
 
   <?php
   $country_result = find_all_countries();

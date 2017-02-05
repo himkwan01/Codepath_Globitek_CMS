@@ -29,7 +29,7 @@
   function find_states_for_country_id($country_id=0) {
     global $db;
     $sql = "SELECT * FROM states ";
-    $sql .= "WHERE country_id='" . $country_id . "' ";
+    $sql .= "WHERE country_id='" . db_escape($db,$country_id) . "' ";
     $sql .= "ORDER BY name ASC;";
     $state_result = db_query($db, $sql);
     return $state_result;
@@ -39,7 +39,7 @@
   function find_state_by_id($id=0) {
     global $db;
     $sql = "SELECT * FROM states ";
-    $sql .= "WHERE id='" . u($id) . "';";
+    $sql .= "WHERE id='" . db_escape($db, $id) . "';";
     $state_result = db_query($db, $sql);
     return $state_result;
   }
@@ -80,8 +80,10 @@
 
     $sql = "INSERT INTO states(name,code,country_id) ";
     $sql .= "VALUES (";
-    $sql .= "'" . $state['name'] ."'," . "'" . $state['code'] . "', ";
-    $sql .= "'"	. $state['country_id']. "')";
+    $sql .= "'" . db_escape($db, $state['name']) ."'," ;
+    $sql .= "'" . db_escape($db, $state['code']) . "', ";
+    $sql .= "'"	. db_escape($db, $state['country_id']). "'";
+    $sql .= ");";
     // For INSERT statments, $result is just true/false
     $result = db_query($db, $sql);
     if($result) {
@@ -106,10 +108,10 @@
     }
 
     $sql = "UPDATE states SET "; // TODO add SQL
-    $sql .= "name='" . $state['name'] . "', ";
-    $sql .= "code='" . $state['code'] . "', ";
-    $sql .= "country_id='" . $state['country_id'] . "' ";
-    $sql .= "WHERE id='" . $state['id'] . "' ";
+    $sql .= "name='" . $db_escape($db, $state['name']) . "', ";
+    $sql .= "code='" . $db_escape($db, $state['code']) . "', ";
+    $sql .= "country_id='" . $db_escape($db, $state['country_id']) . "' ";
+    $sql .= "WHERE id='" . $db_escape($db, $state['id']) . "' ";
     $sql .= "LIMIT 1;";
     // For update_state statments, $result is just true/false
     $result = db_query($db, $sql);
@@ -141,7 +143,7 @@
   function find_territories_for_state_id($state_id=0) {
     global $db;
     $sql = "SELECT * FROM territories ";
-    $sql .= "WHERE state_id='" . $state_id . "' ";
+    $sql .= "WHERE state_id='" . $db_escape($db, $state_id) . "' ";
     $sql .= "ORDER BY position ASC;";
     $territory_result = db_query($db, $sql);
     return $territory_result;
@@ -151,7 +153,7 @@
   function find_territory_by_id($id=0) {
     global $db;
     $sql = "SELECT * FROM territories ";
-    $sql .= "WHERE id='" . $id . "';";
+    $sql .= "WHERE id='" . db_escape($db, $id) . "';";
     $territory_result = db_query($db, $sql);
     return $territory_result;
   }
@@ -190,10 +192,13 @@
       return $errors;
     }
 
-    $sql = "INSERT INTO territories(name,state_id,position) ";
-	$sql .= "VALUES (";
-	$sql .= "'" . $territory['name'] ."'," . "'" . $territory['state_id'] . "', ";
-    $sql .= "'"	. $territory['position']. "')";
+    $sql = "INSERT INTO territories ";
+    $sql .= "(name,state_id,position) ";
+	  $sql .= "VALUES (";
+	  $sql .= "'" . $db_escape($db, $territory['name']) ."'," ;
+    $sql .= "'" . $db_escape($db, $territory['state_id']) . "', ";
+    $sql .= "'"	. $db_escape($db, $territory['position']). "'";
+    $sql .= ");";
     // For INSERT statments, $result is just true/false
     $result = db_query($db, $sql);
     if($result) {
@@ -218,9 +223,9 @@
     }
 
     $sql = "UPDATE territories SET "; // TODO add SQL
-    $sql .= "name='" . $territory['name'] . "', ";
-    $sql .= "position='" . $territory['position'] . "' ";
-    $sql .= "WHERE id='" . $territory['id'] . "' ";
+    $sql .= "name='" . db_escape($db, $territory['name']) . "', ";
+    $sql .= "position='" . db_escape($db, $territory['position']) . "' ";
+    $sql .= "WHERE id='" . $db_escape($db, territory['id']) . "' ";
     $sql .= "LIMIT 1;";
     // For update_territory statments, $result is just true/false
     $result = db_query($db, $sql);
@@ -256,7 +261,7 @@
     $sql = "SELECT * FROM salespeople ";
     $sql .= "LEFT JOIN salespeople_territories
               ON (salespeople_territories.salesperson_id = salespeople.id) ";
-    $sql .= "WHERE salespeople_territories.territory_id='" . $territory_id . "' ";
+    $sql .= "WHERE salespeople_territories.territory_id='" . db_escape($db, $territory_id) . "' ";
     $sql .= "ORDER BY last_name ASC, first_name ASC;";
     $salespeople_result = db_query($db, $sql);
     return $salespeople_result;
@@ -266,7 +271,7 @@
   function find_salesperson_by_id($id=0) {
     global $db;
     $sql = "SELECT * FROM salespeople ";
-    $sql .= "WHERE id='" . u($id) . "';";
+    $sql .= "WHERE id='" . db_escape($db, $id) . "';";
     $salespeople_result = db_query($db, $sql);
     return $salespeople_result;
   }
@@ -314,10 +319,14 @@
       return $errors;
     }
 
-    $sql = "INSERT INTO salespeople(first_name,last_name,phone,email) ";
+    $sql = "INSERT INTO salespeople ";
+    $sql .= "(first_name,last_name,phone,email) ";
     $sql .= "VALUES (";
-    $sql .= "'" . $salesperson['first_name'] ."'," . "'" . $salesperson['last_name'] . "', ";
-    $sql .= "'"	. $salesperson['phone']. "', '" . $salesperson['email'] . "')";
+    $sql .= "'" . db_escape($db, $salesperson['first_name']) ."',";
+    $sql .= "'" . db_escape($db, $salesperson['last_name']) . "', ";
+    $sql .= "'"	. db_escape($db, $salesperson['phone']) . "',";
+    $sql .= "'" . db_escape($db, $salesperson['email']) . "'";
+    $sql .= ");";
     // For INSERT statments, $result is just true/false
     $result = db_query($db, $sql);
     if($result) {
@@ -342,11 +351,11 @@
     }
 
     $sql = "UPDATE salespeople SET "; // TODO add SQL
-    $sql .= "first_name='" . $salesperson['first_name'] . "', ";
-    $sql .= "last_name='" . $salesperson['last_name'] . "', ";
-    $sql .= "phone='" . $salesperson['phone'] . "', ";
-    $sql .= "email='" . $salesperson['email'] . "' ";
-    $sql .= "WHERE id='" . $salesperson['id'] . "' ";
+    $sql .= "first_name='" . db_escape($db, $salesperson['first_name']) . "', ";
+    $sql .= "last_name='" . db_escape($db, $salesperson['last_name']) . "', ";
+    $sql .= "phone='" . db_escape($db, $salesperson['phone']) . "', ";
+    $sql .= "email='" . db_escape($db, $salesperson['email']) . "' ";
+    $sql .= "WHERE id='" . db_escape($db, $salesperson['id']) . "' ";
     $sql .= "LIMIT 1;";
 
     // For update_salesperson statments, $result is just true/false
@@ -392,13 +401,15 @@
   // Find user using id
   function find_user_by_id($id=0) {
     global $db;
-    $sql = "SELECT * FROM users WHERE id='" . u($id) . "' LIMIT 1;";
+    $sql = "SELECT * FROM users ";
+    $sql .= "WHERE id='" . db_escape($db, $id) . "' ";
+    $sql .= "LIMIT 1;";
     $users_result = db_query($db, $sql);
     return $users_result;
   }
   function find_user_by_username($username){
 	  global $db;
-	  $sql = "SELECT * FROM users WHERE username='" . u($username) . "';";
+	  $sql = "SELECT * FROM users WHERE username='" . db_escape($db, $username) . "';";
 	  $result = db_query($db, $sql);
 	  return $result;
   }
@@ -449,10 +460,15 @@
     }
 
     $created_at = date("Y-m-d H:i:s");
-    $sql = "INSERT INTO users(first_name,last_name,email,username,created_at) ";
+    $sql = "INSERT INTO users ";
+    $sql .= "(first_name,last_name,email,username,created_at) ";
     $sql .= "VALUES(";
-	$sql .= "'" . $user['first_name'] ."'," . "'" . $user['last_name'] . "', '".$user['email']. "', ";
-	$sql .= "'" . $user['username'] . "','" . $created_at . "')";
+	  $sql .= "'" . db_escape($db, $user['first_name']) ."',";
+    $sql .= "'" . db_escape($db, $user['last_name']) . "',";
+    $sql .= "'" . db_escape($db, $user['email']) . "', ";
+	  $sql .= "'" . db_escape($db, $user['username']) . "',";
+    $sql .= "'" . $created_at . "'";
+    $sql .= ");";
     // For INSERT statments, $result is just true/false
     $result = db_query($db, $sql);
     if($result) {
@@ -477,11 +493,11 @@
     }
 
     $sql = "UPDATE users SET ";
-    $sql .= "first_name='" . $user['first_name'] . "', ";
-    $sql .= "last_name='" . $user['last_name'] . "', ";
-    $sql .= "email='" . $user['email'] . "', ";
-    $sql .= "username='" . $user['username'] . "' ";
-    $sql .= "WHERE id='" . $user['id'] . "' ";
+    $sql .= "first_name='" . db_escape($db, $user['first_name']) . "', ";
+    $sql .= "last_name='" . db_escape($db, $user['last_name']) . "', ";
+    $sql .= "email='" . db_escape($db, $user['email']) . "', ";
+    $sql .= "username='" . db_escape($db, $user['username']) . "' ";
+    $sql .= "WHERE id='" . db_escape($db, $user['id']) . "' ";
     $sql .= "LIMIT 1;";
     // For update_user statments, $result is just true/false
     $result = db_query($db, $sql);
