@@ -34,11 +34,11 @@
     return preg_match("/^[0-9 ()-]+$/", $value);
   }
 
-  // has_valid_username_format (whiteleist char: A-Z a-z 0-9 _
+  // has_valid_username_format (whitelist char: A-Z a-z 0-9 _)
   function has_valid_username_format($value){
     return preg_match("/^[A-Za-z0-9)]+$/", $value);
   }
-  // My custom validation
+  // My custom validation (whitelist char A-Z a-z space symbol: '-,.)
   // has_valid_name_format
   function has_valid_name_format($value){
 	  return preg_match("/^[A-Za-z '-,.]+$/", $value);

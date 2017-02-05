@@ -1,43 +1,55 @@
 <?php
   require_once('../private/initialize.php');
   // Set default values for all variables the page needs.
-  unset($errors);
-  $errors=[];   // create error message array
-  $first_name=isset($_POST['first_name'])?$_POST['first_name']:'';
-  $last_name=isset($_POST['last_name'])?$_POST['last_name']:'';
-  $email=isset($_POST['email'])?$_POST['email']:'';
-  $username=isset($_POST['username'])?$_POST['username']:'';
+  $errors=array();   // create error message array
+  $user=array(
+    'first_name' => '',
+    'last_name' => '',
+    'username' => '',
+    'email' => ''
+  );
 
   // if this is a POST request, process the form
   // Hint: private/functions.php can help
   
   // Confirm that POST values are present before accessing them.
   if(is_post_request()){
-
+    // Confirm that values are present before accessing them.
+    if(isset($_POST['first_name'])) { $user['first_name'] = $_POST['first_name']; }
+    if(isset($_POST['last_name'])) { $user['last_name'] = $_POST['last_name']; }
+    if(isset($_POST['username'])) { $user['username'] = $_POST['username']; }
+    if(isset($_POST['email'])) { $user['email'] = $_POST['email']; }
+    
     // Perform Validations
     // Hint: Write these in private/validation_functions.php
-    if(is_blank($_POST['first_name'])){
+    if(is_blank($user['first_name'])){
       $errors[]="First name cannot be blank.";
     }
-    else if(!has_length($_POST['first_name'],['min'=>2,'max'=>255])){
+    else if(!has_length($user['first_name'],['min'=>2,'max'=>255])){
       $errors[]="First name must be between 2 and 255 characters.";
     }
-    if(is_blank($_POST['last_name'])){
+    else if(!has_valid_name_format($user['first_name'])){
+      $errors[]="Invalid first name, whitelist characters: letter, symbols: - , . ' ";
+    }
+    if(is_blank($user['last_name'])){
       $errors[]="Last name cannot be blank.";
     }
-    else if(!has_length($_POST['last_name'],['min'=>2,'max'=>255])){
+    else if(!has_length($user['last_name'],['min'=>2,'max'=>255])){
       $errors[]="Last name must be between 2 and 255 characters.";
     }
-    if(is_blank($_POST['email'])){
+    else if(!has_valid_name_format($user['last_name'])){
+      $errors[]="Invalid last name, whitelist characters: letter, symbols: - , . ' ";
+    }
+    if(is_blank($user['email'])){
       $errors[]="email cannot be blank.";
     }
-    else if(!has_valid_email_format($_POST['email'])){
+    else if(!has_valid_email_format($user['email'])){
       $errors[]="Email must be a valid format.";
     }
-    if(is_blank($_POST['username'])){
+    if(is_blank($user['username'])){
       $errors[]="Username cannot be blank.";
     }
-    else if(!has_length($_POST['username'],['min'=>8,'max'=>255])){
+    else if(!has_length($user['username'],['min'=>8,'max'=>255])){
       $errors[]="Username must be at least 8 characters.";
     }
 
@@ -45,8 +57,15 @@
     if(!sizeof($errors)){
       $date=date("Y-m-d H:i:s"); 
       // Write SQL INSERT statement
-      $sql = "INSERT INTO users(first_name,last_name,email,username,created_at)
-        VALUES('$first_name','$last_name','$email','$username','$date')";
+      $sql = "INSERT INTO users";
+      $sql .= "(first_name,last_name,email,username,created_at)";
+      $sql .= "VALUES(";
+      $sql .= "'" . db_escape($db, $user['first_name']) . "',";
+      $sql .= "'" . db_escape($db, $user['last_name']) . "',";
+      $sql .= "'" . db_escape($db, $user['email']) . "',";
+      $sql .= "'" . db_escape($db, $user['username']) . "',";
+      $sql .= "'" . $date . "'";
+      $sql .= ");";
 
       // For INSERT statments, $result is just true/false
        $result = db_query($db, $sql);
@@ -82,16 +101,16 @@
   ?>
 
   <!-- TODO: HTML form goes here -->
-  <form form action="register.php" method="post">
+  <form action="register.php" method="post">
     First Name:<br>
-    <input type="text" name="first_name" value=<?php echo h($first_name); ?>><br>
+    <input type="text" name="first_name" value="<?php echo h($user['first_name']); ?>" ><br>
     Last Name:<br>
-    <input type="text" name="last_name" value=<?php echo h($last_name); ?>><br>
+    <input type="text" name="last_name" value="<?php echo h($user['last_name']); ?>" ><br>
     Email:<br>
-    <input type="text" name="email" value=<?php echo h($email); ?>><br>
+    <input type="text" name="email" value="<?php echo h($user['email']); ?>" ><br>
     Username:<br>
-    <input type="text" name="username" value=<?php echo h($username); ?>><br>
-    <input type="submit" value="Submit">
+    <input type="text" name="username" value="<?php echo h($user['username']); ?>" ><br>
+    <input type="submit" name="submit" value="Create"  />
   </form>
 </div>
 
