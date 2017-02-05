@@ -49,14 +49,8 @@ The following **required** functionality is completed:
 
 The following advanced user stories are optional:
 
-<<<<<<< HEAD
 * [x]  Bonus: Validate that form values contain only whitelisted characters
 * [x]  Bonus: Validate the uniqueness of the username
-=======
-* [x]  Bonus 1: Validate that form values contain only whitelisted characters.
-
-* [ ]  Bonus 2: Validate the uniqueness of the username.
->>>>>>> 4a3b30d8df1b4819806dbeacbcf31f3fce9ebe96
 
 Week 2
 The following **required** functionality is completed:
