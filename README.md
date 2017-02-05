@@ -94,7 +94,7 @@ The following **required** functionality is completed:
    * [x]  Required: Validate that phone numbers contain only the whitelisted characters: 0-9, spaces, and ()-
    * [x]  Required: Validate that email addresses contain only whitelisted characters: A-Z, a-z, 0-9, and @._-
    * [x]  Required: Add at least 5 other validations
-     - [x]  Validate that email addresses contian at least one char before @ , one char between @ and . , and one char after .
+     - [x]  Validate that email addresses contian at least one char before @ , one char between @ and . , and one char after symbol: .
      - [x]  Validate that State codes contian only 2 uppercase characters
      - [x]  Validate that first names and last names contiain only the whitelisted characters: A-Z, a-z, ', -, ,, ., and space.
      - [x]  Validate that country id contain only numbers and the first number will not be zero.
