@@ -52,6 +52,9 @@
     else if(!has_length($user['username'],['min'=>8,'max'=>255])){
       $errors[]="Username must be at least 8 characters.";
     }
+    else if(!has_unique_username($user['username'])){
+      $errors[]="Username has been taken.";
+    }
 
     // if there were no errors, submit data to database
     if(!sizeof($errors)){
