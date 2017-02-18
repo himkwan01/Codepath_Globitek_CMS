@@ -143,7 +143,7 @@
   function find_territories_for_state_id($state_id=0) {
     global $db;
     $sql = "SELECT * FROM territories ";
-    $sql .= "WHERE state_id='" . $db_escape($db, $state_id) . "' ";
+    $sql .= "WHERE state_id='" . db_escape($db, $state_id) . "' ";
     $sql .= "ORDER BY position ASC;";
     $territory_result = db_query($db, $sql);
     return $territory_result;

@@ -36,7 +36,7 @@ if(is_post_request()){
   <?php echo display_errors($errors); ?>
 
   <!-- TODO add form -->
-  <form action="edit.php?id=<?php echo u($salesperson['id']); ?>" method="post">
+  <form action="edit.php?id=<?php echo u($salesperson['id']); ?>" method="POST">
     First name:<br />
     <input type="text" name="first_name" value="<?php echo h($salesperson['first_name']);?>" /><br />
     Last name:<br />

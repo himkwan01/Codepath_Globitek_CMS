@@ -112,9 +112,9 @@ The following **required** functionality is completed:
 
 The following advanced user stories are optional:
 
-* [ ]  Bonus 1: On "public/staff/territories/show.php", instead of displaying an integer value for territories.state_id, display the name of the state.
+* [x]  Bonus 1: On "public/staff/territories/show.php", instead of displaying an integer value for territories.state_id, display the name of the state.
 
-* [ ]  Bonus 2: Validate the uniqueness of users.username, both when a user is created and when a user is updated
+* [x]  Bonus 2: Validate the uniqueness of users.username, both when a user is created and when a user is updated
 
 
 * [ ]  Bonus 3: Add a page for "public/staff/users/delete.php". Add a link to it from the user details page. The delete page will display the text: "Are you sure you want to permanently delete the user: ". If the user confirms it, delete the user record and redirect back to the users list.
