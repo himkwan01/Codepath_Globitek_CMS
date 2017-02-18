@@ -98,7 +98,7 @@ The following **required** functionality is completed:
      - [x]  Validate that State codes contian only 2 uppercase characters
      - [x]  Validate that first names and last names contiain only the whitelisted characters: A-Z, a-z, ', -, ,, ., and space.
      - [x]  Validate that country id contain only numbers and the first number will not be zero.
-     - [x]  Validate that state names contian onyl uppercase character at the beginning.
+     - [x]  Validate that state names contian only uppercase character at the beginning.
    
 8. [x]  Required: Sanitize
    * [x]  Required: All input and dynamic output should be sanitized.
