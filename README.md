@@ -1,6 +1,6 @@
 # Project 1 - Globitek CMS
 
-Time spent: **3** hours spent in total for week 1, **10** hours spent in total for week 2
+Time spent: **3** hours spent in total for week 1, **12** hours spent in total for week 2
 
 ## User Stories
 
@@ -119,9 +119,9 @@ The following advanced user stories are optional:
 
 * [x]  Bonus 3: Add a page for "public/staff/users/delete.php". Add a link to it from the user details page. The delete page will display the text: "Are you sure you want to permanently delete the user: ". If the user confirms it, delete the user record and redirect back to the users list.
 
-* [ ]  Bonus 4: Add a Staff CMS for countries. (Creating a countries table was a bonus objective in last week's assignment.) Add pages for "list", "show", "new", and "edit", similar to the pages in the CMS area for states.
+* [x]  Bonus 4: Add a Staff CMS for countries. (Creating a countries table was a bonus objective in last week's assignment.) Add pages for "list", "show", "new", and "edit", similar to the pages in the CMS area for states.
 
-* [ ]  Advanced: Nest the CMS for states inside of the Staff CMS for countries (created in the previous challenge). It should be nested in the same way in which territories are nested inside of states.
+* [x]  Advanced: Nest the CMS for states inside of the Staff CMS for countries (created in the previous challenge). It should be nested in the same way in which territories are nested inside of states.
 
 ## Video Walkthrough
 
@@ -133,7 +133,7 @@ Week 1
 
 Week 2
 
-<img src='http://i.imgur.com/u1neDPm.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/WpR6Zv2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 

@@ -2,19 +2,17 @@
 require_once('../../../private/initialize.php');
 // Set default values for all variables the page needs.
 $errors = array();
-$state = array(
+$country = array(
   'name' => '',
-  'code' => '',
-  'country_id' => ''
+  'code' => ''
 );
 if(is_post_request()) {
 
   // Confirm that values are present before accessing them.
-  if(isset($_POST['name'])) { $state['name'] = $_POST['name']; }
-  if(isset($_POST['code'])) { $state['code'] = $_POST['code']; }
-  if(isset($_POST['country_id'])) { $state['country_id'] = $_POST['country_id']; }
+  if(isset($_POST['name'])) { $country['name'] = $_POST['name']; }
+  if(isset($_POST['code'])) { $country['code'] = $_POST['code']; }
 
-  $result = insert_state($state);
+  $result = insert_country($country);
   if($result === true) {
     $new_id = db_insert_id($db);
     redirect_to('show.php?id=' . u($new_id));
@@ -24,21 +22,20 @@ if(is_post_request()) {
   }
 }
 ?>
-<?php $page_title = 'Staff: New State'; ?>
+<?php $page_title = 'Staff: New Country'; ?>
 <?php include(SHARED_PATH . '/header.php'); ?>
 
 <div id="main-content">
-  <a href="index.php">Back to States List</a><br />
+  <a href="index.php">Back to Countries List</a><br />
 
-  <h1>New State</h1>
+  <h1>New Country</h1>
   <?php echo display_errors($errors); ?>
   <!-- TODO add form -->
   <form action="new.php" method="post">
     Name:<br />
-    <input type="text" name="name" value="<?php echo h($state['name']); ?>" /><br />
+    <input type="text" name="name" value="<?php echo h($country['name']); ?>" /><br />
     Code:<br />
-    <input type="text" name="code" value="<?php echo h($state['code']); ?>" /><br />
-    <input type="hidden" name="country_id" value="<?php echo h($_GET['id']); ?>" /><br />
+    <input type="text" name="code" value="<?php echo h($country['code']); ?>" /><br />
     <br />
     <input type="submit" name="submit" value="Create"  />
   </form>

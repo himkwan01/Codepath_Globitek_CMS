@@ -63,7 +63,13 @@
   
   //My custom validation
   // has_unique_username
-  function has_unique_username($value){
-	  return db_num_rows(find_user_by_username($value))===0;
+  function has_unique_username($username, $id=null){
+	  $users_result = find_user_by_username($username);
+    
+    while($user = db_fetch_assoc($users_result)){
+      if((int) $id != $user['id']) {return false;}
+    }
+    
+    return true;
   }
 ?>

@@ -29,7 +29,7 @@ if(is_post_request()) {
 <?php include(SHARED_PATH . '/header.php'); ?>
 
 <div id="main-content">
-  <a href="../states/show.php?id=<?php echo h($_GET['id']); ?>">Back to State Details</a><br />
+  <a href="../states/show.php?id=<?php echo h(u($_GET['id'])); ?>">Back to State Details</a><br />
 
   <h1>New Territory</h1>
   <?php echo display_errors($errors); ?>
@@ -39,7 +39,7 @@ if(is_post_request()) {
     <input type="text" name="name" value="<?php echo h($territory['name']); ?>" /><br />
     Position:<br />
     <input type="text" name="position" value="<?php echo h($territory['position']); ?>" /><br />
-	<input type="hidden" name="state_id" value="<?php echo h($_GET['id']); ?>"/><br />
+    <input type="hidden" name="state_id" value="<?php echo h($_GET['id']); ?>"/><br />
     <br />
     <input type="submit" name="submit" value="Create"  />
   </form>

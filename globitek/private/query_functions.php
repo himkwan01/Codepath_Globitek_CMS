@@ -12,6 +12,90 @@
     return $country_result;
   }
 
+  // Find country by ID
+  function find_country_by_id($id=0) {
+    global $db;
+    $sql ="SELECT * FROM countries ";
+    $sql .= " WHERE id='" . db_escape($db, $id) . "';";
+    $country_result = db_query($db, $sql);
+    return $country_result;
+  }
+  
+  
+  function validate_country($country, $errors=array()) {
+
+    if (is_blank($country['name'])) {
+      $errors[] = "Name cannot be blank.";
+    }
+    elseif (!has_length($country['name'], array('min' => 2, 'max' => 255))) {
+      $errors[] = "Name must be between 2 and 255 characters.";
+    }
+    if (is_blank($country['code'])) {
+      $errors[] = "Code cannot be blank.";
+    }
+    elseif (!has_valid_code_format($country['code'])){
+      $errors[] = "Code must be 2 uppercase characters.";
+    }
+
+    return $errors;
+  }
+
+  // Add a new country to the table
+  // Either returns true or an array of errors
+  function insert_country($country) {
+    global $db;
+
+    $errors = validate_country($country);
+    if (!empty($errors)) {
+      return $errors;
+    }
+
+    $sql = "INSERT INTO countries(name,code) ";
+    $sql .= "VALUES (";
+    $sql .= "'" . db_escape($db, $country['name']) ."'," ;
+    $sql .= "'" . db_escape($db, $country['code']) . "' ";
+    $sql .= ");";
+    // For INSERT statments, $result is just true/false
+    $result = db_query($db, $sql);
+    if($result) {
+      return true;
+    } else {
+      // The SQL INSERT statement failed.
+      // Just show the error, not the form
+      echo db_error($db);
+      db_close($db);
+      exit;
+    }
+  }
+
+  // Edit a country record
+  // Either returns true or an array of errors
+  function update_country($country) {
+    global $db;
+
+    $errors = validate_country($country);
+    if (!empty($errors)) {
+      return $errors;
+    }
+
+    $sql = "UPDATE countries SET "; // TODO add SQL
+    $sql .= "name='" . db_escape($db, $country['name']) . "', ";
+    $sql .= "code='" . db_escape($db, $country['code']) . "' ";
+    $sql .= "WHERE id='" . db_escape($db, $country['id']) . "' ";
+    $sql .= "LIMIT 1;";
+    // For update_country statments, $result is just true/false
+    $result = db_query($db, $sql);
+    if($result) {
+      return true;
+    } else {
+      // The SQL UPDATE statement failed.
+      // Just show the error, not the form
+      echo db_error($db);
+      db_close($db);
+      exit;
+    }
+  }
+  
   //
   // STATE QUERIES
   //
@@ -56,8 +140,8 @@
       $errors[] = "Code cannot be blank.";
     }
     elseif (!has_valid_code_format($state['code'])){
-		$errors[] = "Code must be 2 uppercase characters.";
-	}
+      $errors[] = "Code must be 2 uppercase characters.";
+    }
     if (is_blank($state['country_id'])){
       $errors[] = "Country id cannot be blank.";
     }
@@ -108,10 +192,9 @@
     }
 
     $sql = "UPDATE states SET "; // TODO add SQL
-    $sql .= "name='" . $db_escape($db, $state['name']) . "', ";
-    $sql .= "code='" . $db_escape($db, $state['code']) . "', ";
-    $sql .= "country_id='" . $db_escape($db, $state['country_id']) . "' ";
-    $sql .= "WHERE id='" . $db_escape($db, $state['id']) . "' ";
+    $sql .= "name='" . db_escape($db, $state['name']) . "', ";
+    $sql .= "code='" . db_escape($db, $state['code']) . "' ";
+    $sql .= "WHERE id='" . db_escape($db, $state['id']) . "' ";
     $sql .= "LIMIT 1;";
     // For update_state statments, $result is just true/false
     $result = db_query($db, $sql);
@@ -195,9 +278,9 @@
     $sql = "INSERT INTO territories ";
     $sql .= "(name,state_id,position) ";
 	  $sql .= "VALUES (";
-	  $sql .= "'" . $db_escape($db, $territory['name']) ."'," ;
-    $sql .= "'" . $db_escape($db, $territory['state_id']) . "', ";
-    $sql .= "'"	. $db_escape($db, $territory['position']). "'";
+	  $sql .= "'" . db_escape($db, $territory['name']) . "'," ;
+    $sql .= "'" . db_escape($db, $territory['state_id']) . "', ";
+    $sql .= "'"	. db_escape($db, $territory['position']). "'";
     $sql .= ");";
     // For INSERT statments, $result is just true/false
     $result = db_query($db, $sql);
@@ -225,14 +308,14 @@
     $sql = "UPDATE territories SET "; // TODO add SQL
     $sql .= "name='" . db_escape($db, $territory['name']) . "', ";
     $sql .= "position='" . db_escape($db, $territory['position']) . "' ";
-    $sql .= "WHERE id='" . $db_escape($db, territory['id']) . "' ";
+    $sql .= "WHERE id='" . db_escape($db, $territory['id']) . "' ";
     $sql .= "LIMIT 1;";
-    // For update_territory statments, $result is just true/false
+    // For update_state statments, $result is just true/false
     $result = db_query($db, $sql);
     if($result) {
       return true;
     } else {
-      // The SQL UPDATE territoryment failed.
+      // The SQL UPDATE statement failed.
       // Just show the error, not the form
       echo db_error($db);
       db_close($db);
@@ -407,13 +490,16 @@
     $users_result = db_query($db, $sql);
     return $users_result;
   }
+  
   function find_user_by_username($username){
 	  global $db;
 	  $sql = "SELECT * FROM users WHERE username='" . db_escape($db, $username) . "';";
 	  $result = db_query($db, $sql);
 	  return $result;
   }
+  
   function validate_user($user, $errors=array()) {
+    if(!isset($user['id'])) {$user['id']=null;}
     if (is_blank($user['first_name'])) {
       $errors[] = "First name cannot be blank.";
     } elseif (!has_length($user['first_name'], array('min' => 2, 'max' => 255))) {
@@ -442,9 +528,9 @@
       $errors[] = "Username must be between 8 and 255 characters.";
     } elseif (!has_valid_username_format($user['username'])) {
       $errors[] = "Username must be a valid format.";
-    } elseif(!has_unique_username($user['username'])){
-	  $errors[] = "Username has been taken.";
-	}
+    } elseif(!has_unique_username($user['username'], $user['id'])){
+      $errors[] = "Username has been taken.";
+    }
 	
     return $errors;
   }
