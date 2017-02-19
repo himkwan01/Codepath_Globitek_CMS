@@ -117,7 +117,7 @@ The following advanced user stories are optional:
 * [x]  Bonus 2: Validate the uniqueness of users.username, both when a user is created and when a user is updated
 
 
-* [ ]  Bonus 3: Add a page for "public/staff/users/delete.php". Add a link to it from the user details page. The delete page will display the text: "Are you sure you want to permanently delete the user: ". If the user confirms it, delete the user record and redirect back to the users list.
+* [x]  Bonus 3: Add a page for "public/staff/users/delete.php". Add a link to it from the user details page. The delete page will display the text: "Are you sure you want to permanently delete the user: ". If the user confirms it, delete the user record and redirect back to the users list.
 
 * [ ]  Bonus 4: Add a Staff CMS for countries. (Creating a countries table was a bonus objective in last week's assignment.) Add pages for "list", "show", "new", and "edit", similar to the pages in the CMS area for states.
 

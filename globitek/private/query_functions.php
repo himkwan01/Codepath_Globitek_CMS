@@ -512,4 +512,23 @@
     }
   }
 
+   // Delete a user record
+   // Either returns true or false
+   function delete_user($user) {
+     global $db;
+     
+     $sql = "DELETE FROM users ";
+     $sql .= "WHERE id='" . db_escape($db, $user['id']) . "' ";
+     $sql .= "LIMIT 1;";  // make sure only delete one record
+     
+     $result = db_query($db, $sql);
+     if($result) {
+       return true;
+     } else {
+       // DELETE failed
+       echo db_error($db);
+       db_close($db);
+       exit;
+     }
+   }
 ?>

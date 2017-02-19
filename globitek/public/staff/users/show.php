@@ -17,7 +17,6 @@ $user = db_fetch_assoc($users_result);
   <a href="index.php">Back to Users List</a><br />
 
   <h1>User: <?php echo h($user['first_name']) . " " . h($user['last_name']); ?></h1>
-
   <?php
     echo "<table id=\"user\">";
     echo "<tr>";
@@ -38,6 +37,7 @@ $user = db_fetch_assoc($users_result);
   ?>
   <br />
   <a href="edit.php?id=<?php echo u($user['id']); ?>">Edit</a><br />
+  <a href="delete.php?id=<?php echo u($user['id']);?>">Delete</a><br />
 
 </div>
 
